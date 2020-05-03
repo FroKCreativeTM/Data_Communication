@@ -32,8 +32,13 @@ void CClient::Connect(int argc, char** argv)
 		this->errorHandling("connect() Error");
 	}
 
+	// char * message (x64 : sizeof() -> 30 X 8 O)
 	this->message = new char[30];
-	strLen = recv(this->m_serverSocket, this->message, sizeof(this->message) - 1, 0);
+	// 어떤 소켓을 통해서
+	// 어떤 저장소에,
+	// 얼마나 많은 양의 데이터를 받을 것인가
+	// recv();
+	strLen = recv(this->m_serverSocket, this->message, strlen(this->message) - 1, 0);
 	
 	if (strLen == -1)
 	{
